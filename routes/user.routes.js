@@ -10,7 +10,7 @@ const UserController = require('../controllers/user.controller')
 }
 
 router.post('/user', authenticateToken, UserController.createUser);
-router.get('/user', authenticateToken, UserController.signIn);
+router.post('/userSign', UserController.signIn);
 
 
 module.exports = router;

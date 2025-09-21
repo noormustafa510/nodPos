@@ -12,8 +12,8 @@ class ProductServices {
     bItems,
     wNumber,
     pExpiry,
-      mUnit,
-      sLocation,
+    mUnit,
+    sLocation
   ) {
     const createProduct = new ProductModel({
       name,
@@ -26,7 +26,7 @@ class ProductServices {
       bItems,
       wNumber,
       pExpiry,
-        mUnit,
+      mUnit,
       sLocation,
     });
     const product = await createProduct.save();
@@ -40,7 +40,7 @@ class ProductServices {
   }
 
   static async getProduct(qrCode) {
-    const product = await ProductModel.findOne({qrCode});
+    const product = await ProductModel.findOne({ qrCode });
 
     return product;
   }
@@ -57,8 +57,8 @@ class ProductServices {
     bItems,
     wNumber,
     pExpiry,
-      mUnit,
-      sLocation,
+    mUnit,
+    sLocation
   ) {
     const product = new ProductModel({
       name,
@@ -71,7 +71,7 @@ class ProductServices {
       bItems,
       wNumber,
       pExpiry,
-        mUnit,
+      mUnit,
       sLocation,
     });
 
@@ -85,26 +85,18 @@ class ProductServices {
       bItems,
       wNumber,
       pExpiry,
-        mUnit,
-      sLocation
+      mUnit,
+      sLocation,
     });
 
     return updateProduct;
   }
 
-
-    static async deleteProduct(
-    id,
-  ) {
-
-
-    const deletedProduct = await ProductModel.findByIdAndDelete(id)
+  static async deleteProduct(id) {
+    const deletedProduct = await ProductModel.findByIdAndDelete(id);
 
     return deletedProduct;
   }
-
-
-  
 
   //  static async updateProduct( name, category, qrCode,price,cost,discount,inventory,bItems,wNumber,pExpiry) {
   //         const createProduct = new  ProductModel({ name, category, qrCode,price,cost,discount,inventory,bItems,wNumber,pExpiry });

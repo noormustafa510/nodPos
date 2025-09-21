@@ -11,8 +11,18 @@ const ItemSchema = new Schema ({
        type: String,
         required: true ,
     },
+     price: {
+        type: Number,
+        required:true,
+
+    },
     
     nBox: {
+        type: Number,
+        required:true,
+
+    },
+     cItems: {
         type: Number,
         required:true,
 

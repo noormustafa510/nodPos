@@ -4,9 +4,9 @@ exports.createInventory = async (req, res, next) => {
 
     try{
      
-       const {items, supName ,iDate,onDiscount,bill} = req.body;
+       const {items, supName ,iDate,onDiscount,tax,bill} = req.body;
 
-      const inventory =  await InventoryServices.createInventory(items, supName ,iDate, onDiscount,bill);
+      const inventory =  await InventoryServices.createInventory(items, supName ,iDate, onDiscount,tax,bill);
         res.status(200).json(inventory);
 
     }
@@ -45,11 +45,14 @@ exports.updateInventory = async(req,res, next)=>{
 
     try{
         const id = req.params.id;
-               const {items, supName ,iDate,onDiscount,bill} = req.body;
-                const updatedInventory = await InventoryServices.updateInventory(id,items, supName ,iDate,onDiscount,bill);
+               const {items, supName ,iDate,onDiscount,tax,bill} = req.body;
+
+                const updatedInventory = await InventoryServices.updateInventory(id,items, supName ,iDate,onDiscount,tax,bill);
+
                     res.status(200).json(updatedInventory);
             }
     catch(err){
+
                 res.status(404).json({msg: err})
 
     }

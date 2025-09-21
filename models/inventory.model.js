@@ -49,7 +49,10 @@ onDiscount: {
     required: true,
 }
 
-,
+,tax: {
+    type: Number,
+    required: true,
+},
 bill: {
     type: Number,
     required: true,

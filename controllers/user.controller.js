@@ -25,7 +25,6 @@ exports.signIn = async (req, res, next) => {
 
     const result = await UserServices.signIn(userName, password);
 
-    console.log(result);
     if (result) {
       const userE = await UserServices.checkUser(userName);
 
@@ -34,7 +33,7 @@ exports.signIn = async (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET
       );
 
-      res.status(200).json({ token: token });
+      res.status(200).json({ token: token, permissions: userE.permissions });
     } else {
       res.status(404).json({ msg: "Incorrect Credential" });
     }

@@ -11,8 +11,8 @@ const UserController = require('../controllers/user.controller')
     
 }
 
-router.post('/expenses',authenticateToken, ExpenseController.createExpense);
-router.get('/expenses',authenticateToken, ExpenseController.getTopExpense);
+router.post('/expense',authenticateToken, ExpenseController.createExpense);
+router.get('/expense',authenticateToken, ExpenseController.getTopExpense);
 router.get('/expense/:id', authenticateToken, ExpenseController.getExpenseWDate);
 router.put('/expense/:id', authenticateToken, ExpenseController.updateExpense);
 router.delete('/expense/:id', authenticateToken, ExpenseController.deleteExpense);

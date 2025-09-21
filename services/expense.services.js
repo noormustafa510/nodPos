@@ -12,7 +12,7 @@ class ExpenseServices{
     }
      static async getExpenses(){
 
-        const expenseList =  await ExpenseModel.find().sort({_id:-1}).limit(50);
+        const expenseList =  await ExpenseModel.find().sort({_id:-1}).limit(1000);
         return expenseList;
 
     }

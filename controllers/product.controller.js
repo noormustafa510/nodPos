@@ -1,5 +1,7 @@
 const ProductServices = require("../services/product.services");
 const ProductModel = require("../models/product.model");
+const multer = require('multer');
+    const path = require('path');
 
 exports.createProduct = async (req, res, next) => {
   try {
@@ -21,7 +23,7 @@ exports.createProduct = async (req, res, next) => {
     let checkProduct = await ProductModel.findOne({ qrCode });
 
     if (checkProduct) {
-      res.status(200).json({ msg: "Duplicate" });
+      res.status(201).json({ msg: "Duplicate" });
     } else {
       let product = await ProductServices.createProduct(
         name,
@@ -48,6 +50,7 @@ exports.getProducts = async (req, res, next) => {
   try {
     const productList = await ProductServices.getProducts();
 
+    console.log(productList);
     res.status(200).json(productList);
   } catch (err) {
     console.log(err);
@@ -65,6 +68,7 @@ exports.getProduct = async (req, res, next) => {
     if (product) {
       res.status(200).json(product);
     } else {
+      
       res.status(404).json({ msg: "nf" });
     }
   } catch (err) {
@@ -133,3 +137,17 @@ exports.deleteProduct = async (req, res, next) => {
     res.status(404).json(err);
   }
 };
+
+
+exports.uploadImage = async (req, res, next) =>{
+
+  console.log(req.body)
+  
+
+    if (!req.file) {
+        return res.status(400).json({msg:'No image file uploaded.'});
+      }
+ console.log('Image uploaded:', req.file.filename);
+      res.status(200).json({ message: 'Image uploaded successfully!', filename: req.file.filename  });
+    };
+
