@@ -2,6 +2,7 @@ const SaleServices = require("../services/sale.services");
 
 
 exports.createSale = async (req, res, next) => {
+   
     try {
         const {   items,
     tItems,
@@ -40,12 +41,14 @@ exports.createSale = async (req, res, next) => {
 
     } 
     catch(err){
+        console.log(`Working2:${err}` );
     res.status(404).json({msg:err});
 
     }
 }
 
 exports.getSale = async (req, res, next) => {
+
     try {
        const remarks = req.query.remarks;
               const iNumber = req.query.iNumber;
@@ -56,9 +59,11 @@ exports.getSale = async (req, res, next) => {
        const min = req.query.min;
        const payMethod = req.query.payMethod;
        const customerName = req.query.customerName;  
+              const editedBillNumber = req.query.editedBillNumber;  
+
 
     
-       const sale = await SaleServices.getSale(remarks,iNumber,cName,shift,sDate,hour,min,payMethod,customerName);
+       const sale = await SaleServices.getSale(remarks,iNumber,cName,shift,sDate,hour,min,payMethod,customerName,editedBillNumber);
         res.status(200).json(sale)
     
     } catch(err){

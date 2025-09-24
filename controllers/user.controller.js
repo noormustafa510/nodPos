@@ -5,6 +5,7 @@ const UserServices = require("../services/user.services");
 var jwt = require("jsonwebtoken");
 
 exports.createUser = async (req, res, next) => {
+  
   try {
     const { userName, password, permissions } = req.body;
 
@@ -13,11 +14,60 @@ exports.createUser = async (req, res, next) => {
       password,
       permissions
     );
+
     res.status(200).json(savedUser);
   } catch (err) {
     res.status(404).json({ msg: err });
   }
 };
+
+exports.updateUser = async (req, res, next) => {
+  try {
+
+    const id = req.params.id;
+    const {  permissions } = req.body;
+
+    const updatedUser = await UserServices.updateUser(id,
+    
+      permissions
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+
+    res.status(404).json({ msg: err });
+  }
+};
+
+
+exports.getUsers = async (req, res, next) => {
+  try {
+    const userList = await UserServices.getUsers();
+
+
+    res.status(200).json(userList);
+  } catch (err) {
+    res.status(404).json({ msg: err });
+  }
+};
+
+exports.deleteUser = async (req, res, next) => {
+
+  try {
+    const id = req.params.id;
+
+    const user = await UserServices.deleteUser(id);
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ msg: "nf" });
+    }
+  } catch (err) {
+    res.status(404).json(err);
+  }
+};
+
 
 exports.signIn = async (req, res, next) => {
   try {
@@ -33,7 +83,7 @@ exports.signIn = async (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET
       );
 
-      res.status(200).json({ token: token, permissions: userE.permissions });
+      res.status(200).json({ token: token, permissions: userE.permissions, id: userE.id });
     } else {
       res.status(404).json({ msg: "Incorrect Credential" });
     }

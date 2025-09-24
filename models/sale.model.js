@@ -16,6 +16,11 @@ const ItemSchema = new Schema ({
         required:true,
 
     },
+     cost: {
+        type: Number,
+        required:true,
+
+    },
     
     nBox: {
         type: Number,
@@ -25,8 +30,7 @@ const ItemSchema = new Schema ({
      cItems: {
         type: Number,
         required:true,
-
-    },
+  },
 
     nItems: {
         type: Number,

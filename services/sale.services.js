@@ -39,8 +39,9 @@ class SaleServices {
       payMethod,
       customerName,
     });
-
+ 
     const rSale = await sale.save();
+    
     return rSale;
   }
   static async getSale(
@@ -52,8 +53,10 @@ class SaleServices {
     hour,
     min,
     payMethod,
-    customerName
+    customerName,
+    editedBillNumber,
   ) {
+
     let entry = {};
     remarks ? (entry.remarks = remarks) : 0;
 
@@ -65,10 +68,11 @@ class SaleServices {
     min ? (entry.min = min) : 0;
     payMethod ? (entry.payMethod = payMethod) : 0;
     customerName ? (entry.customerName = customerName) : 0;
+        editedBillNumber ? (entry.editedBillNumber = editedBillNumber) : 0;
 
-    console.log(entry);
 
-    const sale = await SaleModel.find(entry);
+    
+    const sale = await SaleModel.find(entry).sort({_id:-1}).limit(5000);
 
     return sale;
   }

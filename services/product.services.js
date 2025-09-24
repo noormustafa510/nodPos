@@ -92,10 +92,20 @@ class ProductServices {
     return updateProduct;
   }
 
+
+  
+
   static async deleteProduct(id) {
     const deletedProduct = await ProductModel.findByIdAndDelete(id);
 
     return deletedProduct;
+  }
+
+
+    static async updateProductItems( qrCode, count) {
+    const updateProductItems = await ProductModel.findOneAndUpdate({qrCode},{$inc:{inventory: count}} );
+
+    return updateProductItems;
   }
 
   //  static async updateProduct( name, category, qrCode,price,cost,discount,inventory,bItems,wNumber,pExpiry) {

@@ -139,6 +139,32 @@ exports.deleteProduct = async (req, res, next) => {
 };
 
 
+
+exports.updateProductItems = async (req, res, next) => {
+  try {
+    
+
+      const {
+   qrCode, count
+    } = req.body;
+
+    const product = await ProductServices.updateProductItems(qrCode,count)
+
+    if (product) {
+      res.status(200).json(product);
+    } else {
+
+      res.status(404).json({ msg: "nf" });
+    }
+  } catch (err) {
+                            console.log(err);
+
+    res.status(404).json(err);
+  }
+};
+
+
+
 exports.uploadImage = async (req, res, next) =>{
 
   console.log(req.body)

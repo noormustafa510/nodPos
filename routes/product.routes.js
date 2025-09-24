@@ -28,6 +28,8 @@ router.post("/product", authenticateToken, ProductController.createProduct);
 router.get("/product", authenticateToken, ProductController.getProducts);
 router.get("/product/:id", authenticateToken, ProductController.getProduct);
 router.put("/product/:id", authenticateToken, ProductController.updateProduct);
+router.put("/product/", authenticateToken, ProductController.updateProductItems);
+
 router.delete(
   "/product/:id",
   authenticateToken,
